@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Web Design Final Projesi</title>
+
+  <!-- CSS BAĞLANTISI -->
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <div class="nav">
+    <div class="nav-inner container">
+      <div class="brand">
+        <img src="assets/logo.svg" alt="Logo">
+      </div>
+
+      <div class="menu">
+        <a href="index.html" class="active">Home</a>
+        <a href="#cv">CV</a>
+        <a href="page2.html">2. Sayfa</a>
+      </div>
+
+      <div class="lang">
+        <button class="active">TR</button>
+        <button>EN</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="container">
+    <div class="hero">
+      <div class="hero-grid">
+        <div class="card">
+          <h2>Web Tasarım Final Projesi</h2>
+          <p class="muted">
+            Bu site Web Design dersi final projesi için hazırlanmıştır.
+            HTML, CSS ve JavaScript kullanılmıştır.
+          </p>
+
+          <div class="badges">
+            <span class="badge">HTML</span>
+            <span class="badge">CSS</span>
+            <span class="badge">JavaScript</span>
+            <span class="badge">Responsive</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Hızlı Linkler</h3>
+          <p class="muted">Timeline, ders programı, form ve news içerir.</p>
+          <a href="page2.html" class="btn primary">2. Sayfaya Git</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CV -->
+    <div id="cv" class="card">
+      <h2>CV</h2>
+
+      <div class="cv-grid">
+        <div class="card">
+          <h3>Hakkımda</h3>
+          <p class="muted">
+            Ben Nehir Bektaş. Web tasarımı ve front-end geliştirme ile ilgileniyorum.
+            HTML, CSS ve JavaScript kullanarak modern web siteleri geliştiriyorum.
+          </p>
+
+          <div class="kv">
+            <strong>İsim</strong>
+            <span>Nehir Bektaş</span>
+          </div>
+          <div class="kv">
+            <strong>Email</strong>
+            <span>nehir@example.com</span>
+          </div>
+          <div class="kv">
+            <strong>Şehir</strong>
+            <span>İstanbul</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Yetenekler</h3>
+
+          <div class="kv">
+            <strong>HTML</strong>
+            <span>İyi</span>
+          </div>
+          <div class="kv">
+            <strong>CSS</strong>
+            <span>İyi</span>
+          </div>
+          <div class="kv">
+            <strong>JavaScript</strong>
+            <span>Orta</span>
+          </div>
+
+          <h3>Eğitim</h3>
+          <div class="kv">
+            <strong>Üniversite</strong>
+            <span>Bilgisayar / Web Tasarım</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      © 2026 Nehir Bektaş – Web Design Final Projesi
+    </div>
+  </div>
+
+  <!-- JS BAĞLANTISI -->
+  <script src="assets/app.js"></script>
+</body>
+</html>
