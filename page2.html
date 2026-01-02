@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Final Projesi – 2. Sayfa</title>
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="assets/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Page 2 | Final Project</title>
+  <link rel="stylesheet" href="assets/style.css" />
+  <script defer src="assets/app.js"></script>
 </head>
 <body>
 
-  <!-- NAVBAR -->
   <div class="nav">
     <div class="nav-inner container">
       <div class="brand">
@@ -18,9 +16,14 @@
       </div>
 
       <div class="menu">
-        <a href="index.html">Home</a>
-        <a href="index.html#cv">CV</a>
-        <a href="page2.html" class="active">2. Sayfa</a>
+        <a href="index.html" data-i18n="nav_home">Home</a>
+        <a href="index.html#cv" data-i18n="nav_cv">CV</a>
+        <a class="active" href="page2.html" data-i18n="nav_page2">2. Sayfa</a>
+      </div>
+
+      <div class="lang">
+        <button data-lang="tr" class="active">TR</button>
+        <button data-lang="en">EN</button>
       </div>
     </div>
   </div>
@@ -29,136 +32,228 @@
 
     <!-- TIMELINE -->
     <div class="timeline-wrap">
-      <h2>Timeline</h2>
-
+      <h2 data-i18n="timeline_title">Timeline (Template)</h2>
       <div class="timeline">
+
         <div class="tl-item">
-          <h3>1. Hafta</h3>
-          <p>HTML yapısı ve temel div düzeni oluşturuldu.</p>
+          <h3 data-i18n="tl1_title">Hafta 1</h3>
+          <p class="muted" data-i18n="tl1_desc"></p>
+          <div class="tl-meta">
+            <span class="chip">HTML</span><span class="chip">DIV</span><span class="chip">Plan</span>
+          </div>
         </div>
 
         <div class="tl-item">
-          <h3>2. Hafta</h3>
-          <p>CSS ile tasarım, renkler ve kart yapısı eklendi.</p>
+          <h3 data-i18n="tl2_title">Hafta 2</h3>
+          <p class="muted" data-i18n="tl2_desc"></p>
+          <div class="tl-meta">
+            <span class="chip">CSS</span><span class="chip">Template</span><span class="chip">Responsive</span>
+          </div>
         </div>
 
         <div class="tl-item">
-          <h3>3. Hafta</h3>
-          <p>Tablo, timeline ve sayfa geçişleri yapıldı.</p>
+          <h3 data-i18n="tl3_title">Hafta 3</h3>
+          <p class="muted" data-i18n="tl3_desc"></p>
+          <div class="tl-meta">
+            <span class="chip">Table</span><span class="chip">Timeline</span><span class="chip">News</span>
+          </div>
         </div>
 
         <div class="tl-item">
-          <h3>4. Hafta</h3>
-          <p>Form, iframe, JavaScript ve GitHub Pages yayını.</p>
+          <h3 data-i18n="tl4_title">Hafta 4</h3>
+          <p class="muted" data-i18n="tl4_desc"></p>
+          <div class="tl-meta">
+            <span class="chip">Form</span><span class="chip">Anti-spam</span><span class="chip">Deploy</span>
+          </div>
         </div>
+
+      </div>
+
+      <!-- TIMELINE SPAM KORUMALI FEEDBACK -->
+      <div class="card">
+        <h3 data-i18n="tl_feedback_title">Timeline Feedback (Spam korumalı)</h3>
+        <p class="muted" data-i18n="fb_desc"></p>
+
+        <form id="timelineForm">
+          <!-- honeypot (spam koruma) -->
+          <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off"/>
+
+          <div class="row">
+            <div>
+              <label data-i18n="fb_name">Ad</label>
+              <input name="name" type="text" data-i18n-placeholder="fb_name" placeholder="Ad"/>
+            </div>
+            <div>
+              <label data-i18n="fb_math">Soru: 2 + 3 = ?</label>
+              <input name="math" type="text" placeholder="5"/>
+            </div>
+          </div>
+
+          <label data-i18n="fb_msg">Mesaj</label>
+          <textarea name="msg" data-i18n-placeholder="fb_msg" placeholder="Mesaj"></textarea>
+
+          <div class="check">
+            <input type="checkbox" name="robot" id="robotCheck"/>
+            <label for="robotCheck" data-i18n="fb_robot">Ben robot değilim</label>
+          </div>
+
+          <button class="btn primary" type="submit" data-i18n="fb_send">Gönder</button>
+          <div id="timelineMsg" class="msg" data-i18n="fb_note"></div>
+        </form>
       </div>
     </div>
 
-    <!-- DERS PROGRAMI TABLO -->
+    <!-- SCHEDULE TABLE -->
     <div class="card">
-      <h2>Ders Programı</h2>
+      <h2 data-i18n="schedule_title">Ders Programı</h2>
+      <p class="muted" data-i18n="schedule_desc"></p>
 
       <div class="table-wrap">
         <table>
           <tr>
-            <th>Saat</th>
-            <th>Pzt</th>
-            <th>Sal</th>
-            <th>Çar</th>
-            <th>Per</th>
-            <th>Cum</th>
+            <th data-i18n="col_time">Saat</th>
+            <th data-i18n="mon">Pzt</th>
+            <th data-i18n="tue">Sal</th>
+            <th data-i18n="wed">Çar</th>
+            <th data-i18n="thu">Per</th>
+            <th data-i18n="fri">Cum</th>
           </tr>
+
           <tr>
-            <td>09:00</td>
-            <td>Web Tasarım</td>
-            <td>---</td>
-            <td>Algoritma</td>
-            <td>---</td>
-            <td>İngilizce</td>
+            <td>09:00 - 12:00</td>
+            <td class="empty">—</td>
+            <td class="slot"><strong>IMS201</strong><br><span class="small">Data Structure & DBMS</span></td>
+            <td class="empty">—</td>
+            <td class="slot"><strong>IMS207</strong><br><span class="small">Web Design & Internet Programming</span></td>
+            <td class="empty">—</td>
           </tr>
+
           <tr>
-            <td>11:00</td>
-            <td>---</td>
-            <td>Veri Tabanı</td>
-            <td>---</td>
-            <td>UI/UX</td>
-            <td>---</td>
+            <td>12:00 - 15:00</td>
+            <td class="slot"><strong>IMS263</strong><br><span class="small">Management and Organization</span></td>
+            <td class="empty">—</td>
+            <td class="slot"><strong>IMS259</strong><br><span class="small">Business Process Analysis</span></td>
+            <td class="empty">—</td>
+            <td class="empty">—</td>
           </tr>
+
           <tr>
-            <td>14:00</td>
-            <td>Sanat</td>
-            <td>---</td>
-            <td>Spor</td>
-            <td>---</td>
-            <td>Proje</td>
+            <td>14:00 - 17:00</td>
+            <td class="empty">—</td>
+            <td class="slot"><strong>IMS209</strong><br><span class="small">Marketing Management</span></td>
+            <td class="empty">—</td>
+            <td class="slot"><strong>FCC109</strong><br><span class="small">Mathematics</span></td>
+            <td class="empty">—</td>
           </tr>
         </table>
       </div>
     </div>
 
-    <!-- FORM -->
+    <!-- FORM (checkbox + iframe + js mail) -->
     <div class="card">
-      <h2>Bilgi Formu</h2>
+      <h2 data-i18n="form_title">Form Sayfası (Checkbox + Iframe + JS mail)</h2>
+      <p class="muted" data-i18n="form_desc"></p>
 
-      <form>
-        <label>Ad Soyad</label>
-        <input type="text">
+      <form id="contactForm">
+        <!-- honeypot -->
+        <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off"/>
 
-        <label>Email</label>
-        <input type="email">
-
-        <label>İlgi Alanları</label>
-        <div class="check">
-          <input type="checkbox"> Web Tasarım
-        </div>
-        <div class="check">
-          <input type="checkbox"> UI / UX
-        </div>
-        <div class="check">
-          <input type="checkbox"> Spor
+        <div class="row">
+          <div>
+            <label data-i18n="f_fullname">Ad Soyad</label>
+            <input name="fullname" type="text" data-i18n-placeholder="f_fullname" placeholder="Ad Soyad"/>
+          </div>
+          <div>
+            <label data-i18n="f_email">E-mail</label>
+            <input name="email" type="email" data-i18n-placeholder="f_email" placeholder="E-mail"/>
+          </div>
         </div>
 
-        <button class="btn primary" type="submit">Gönder</button>
+        <label data-i18n="f_interests">İlgi Alanları</label>
+        <div class="check"><input type="checkbox" name="i1" id="i1"><label for="i1" data-i18n="f_i1">Web Tasarım</label></div>
+        <div class="check"><input type="checkbox" name="i2" id="i2"><label for="i2" data-i18n="f_i2">UI/UX</label></div>
+        <div class="check"><input type="checkbox" name="i3" id="i3"><label for="i3" data-i18n="f_i3">Yoga / Yürüyüş</label></div>
+
+        <div class="row">
+          <div class="check">
+            <input type="checkbox" name="consent" id="consent">
+            <label for="consent" data-i18n="f_consent">Bilgilerimin proje kapsamında kullanılmasını kabul ediyorum</label>
+          </div>
+          <div>
+            <label data-i18n="f_math">Soru: 7 - 2 = ?</label>
+            <input name="math" type="text" placeholder="5"/>
+          </div>
+        </div>
+
+        <button class="btn primary" type="submit" data-i18n="f_send">Submit</button>
+        <div id="contactMsg" class="msg"> </div>
       </form>
     </div>
 
     <!-- IFRAME -->
     <div class="card">
-      <h2>Iframe Örneği</h2>
-      <iframe 
-        src="https://www.wikipedia.org" 
-        width="100%" 
-        height="300"
-        style="border-radius:12px;">
-      </iframe>
+      <h2 data-i18n="iframe_title">Iframe (Örnek Harita)</h2>
+      <div class="iframe">
+        <iframe
+          title="map"
+          width="100%"
+          height="320"
+          style="border:0"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.openstreetmap.org/export/embed.html?bbox=28.990%2C41.000%2C29.060%2C41.050&layer=mapnik">
+        </iframe>
+      </div>
+      <p class="small">* Wikipedia bazen iframe engeller; OSM genelde sorunsuzdur.</p>
     </div>
 
-    <!-- NEWS -->
+    <!-- NEWS / PUBLICATIONS -->
     <div class="card">
-      <h2>News / Publications</h2>
+      <h2 data-i18n="news_title">News / Publications</h2>
 
       <div class="news-grid">
         <div class="news-card">
-          <h3>Final Projesi Yayında</h3>
-          <p>Web tasarım final projesi başarıyla tamamlandı.</p>
+          <div class="date">2026</div>
+          <h3 data-i18n="n1_t">Final proje yayına alındı</h3>
+          <p class="muted" data-i18n="n1_d"></p>
+          <span class="tag">News</span>
         </div>
 
         <div class="news-card">
-          <h3>Yeni Tasarım</h3>
-          <p>Responsive ve modern arayüz kullanıldı.</p>
+          <div class="date">2026</div>
+          <h3 data-i18n="n2_t">TR/EN dil sistemi eklendi</h3>
+          <p class="muted" data-i18n="n2_d"></p>
+          <span class="tag">Publication</span>
         </div>
 
         <div class="news-card">
-          <h3>GitHub Pages</h3>
-          <p>Proje GitHub Pages üzerinden yayınlandı.</p>
+          <div class="date">2026</div>
+          <h3 data-i18n="n3_t">Form + Spam koruma tamamlandı</h3>
+          <p class="muted" data-i18n="n3_d"></p>
+          <span class="tag">Update</span>
         </div>
       </div>
     </div>
 
-    <div class="footer">
-      © 2026 Nehir Bektaş – Web Design Final Projesi
+    <div class="card">
+      <h2>Statistical Engine (Page 2)</h2>
+      <div class="grid-2">
+        <div class="kv">
+          <strong>Visits (this page)</strong>
+          <span id="visitCount">0</span>
+        </div>
+        <div class="kv">
+          <strong>Form submits (total)</strong>
+          <span id="submitCount">0</span>
+        </div>
+      </div>
+      <div class="kv">
+        <strong>Total Visits (all pages)</strong>
+        <span id="totalVisits">0</span>
+      </div>
     </div>
 
+    <div class="footer" data-i18n="footer">© 2026 Nehir Bektaş – Web Design Final Projesi</div>
   </div>
 
 </body>
