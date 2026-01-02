@@ -1,149 +1,1133 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Nehir Bektaş | Final Project</title>
-  <link rel="stylesheet" href="assets/style.css" />
-  <script defer src="assets/app.js"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nehir Bektaş • Final Web Projesi</title>
+  <style>
+    :root{
+      --bg:#ffffff;
+      --text:#111;
+      --muted:#555;
+      --border:#dcdcdc;
+      --soft:#f6f6f6;
+      --accent:#1f6feb;
+      --accent2:#0b5bd3;
+      --ok:#0a7a2f;
+      --bad:#b00020;
+      --radius:12px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height:1.45;
+    }
+    a{ color:var(--accent); text-decoration:none; }
+    a:hover{ text-decoration:underline; }
+    .container{ width:min(1100px, 92vw); margin:0 auto; }
+
+    header{
+      position: sticky;
+      top:0;
+      z-index: 10;
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+    }
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:12px 0;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-width: 220px;
+    }
+    .logo{
+      width:38px; height:38px;
+      border-radius:10px;
+      border:1px solid var(--border);
+      background: linear-gradient(135deg, #e9f2ff, #ffffff);
+      display:grid; place-items:center;
+      font-weight:800;
+      color: var(--accent);
+    }
+    .brand-title{ font-weight:800; }
+    .badge{
+      font-size:12px;
+      padding:3px 8px;
+      border:1px solid var(--border);
+      border-radius:999px;
+      color:var(--muted);
+      display:inline-block;
+      margin-top:2px;
+    }
+
+    nav ul{
+      list-style:none;
+      display:flex;
+      flex-wrap:wrap;
+      gap:6px;
+      margin:0;
+      padding:0;
+      justify-content:center;
+    }
+    nav a{
+      display:inline-block;
+      padding:8px 10px;
+      border:1px solid transparent;
+      border-radius:999px;
+      color:#111;
+    }
+    nav a:hover{
+      background: var(--soft);
+      border-color: var(--border);
+      text-decoration:none;
+    }
+
+    .lang{
+      display:flex; gap:8px; align-items:center;
+      min-width: 140px;
+      justify-content:flex-end;
+    }
+    button{
+      cursor:pointer;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:#fff;
+      color:#111;
+    }
+    button.primary{
+      border-color: var(--accent);
+      color: var(--accent);
+      font-weight:600;
+    }
+    button:active{ transform: translateY(1px); }
+
+    main{ padding: 18px 0 36px; }
+    .grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:14px;
+    }
+    @media (max-width: 900px){
+      .grid{ grid-template-columns: 1fr; }
+      .brand{ min-width: unset; }
+      .lang{ min-width: unset; }
+    }
+
+    .card{
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      background: #fff;
+      padding: 14px;
+    }
+    .soft{ background: var(--soft); }
+    h1,h2,h3{ margin:0 0 10px; }
+    p{ margin: 0 0 10px; }
+    .muted{ color: var(--muted); }
+    .sep{ border:none; border-top:1px solid var(--border); margin: 12px 0; }
+
+    .pill-row{ display:flex; gap:8px; flex-wrap:wrap; }
+    .pill{
+      border:1px solid var(--border);
+      border-radius:999px;
+      padding:6px 10px;
+      background:#fff;
+      font-size:13px;
+      color:#222;
+    }
+
+    /* Sections */
+    section{ scroll-margin-top: 78px; }
+    .section-title{
+      display:flex;
+      align-items:baseline;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .mini{ font-size: 13px; color: var(--muted); }
+
+    /* Stats */
+    .stats{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:10px;
+    }
+    @media (max-width: 900px){ .stats{ grid-template-columns: 1fr; } }
+    .stat{
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 12px;
+      background: #fff;
+    }
+    .big{ font-size: 28px; font-weight: 900; }
+
+    /* CV */
+    .cv-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 900px){ .cv-grid{ grid-template-columns: 1fr; } }
+    .kv{
+      display:grid;
+      grid-template-columns: 160px 1fr;
+      gap:8px;
+    }
+    .kv div{
+      border:1px solid var(--border);
+      border-radius:10px;
+      padding:8px 10px;
+      background:#fff;
+    }
+
+    /* Table schedule */
+    table{
+      width:100%;
+      border-collapse: collapse;
+      overflow:hidden;
+      border-radius: 12px;
+      border:1px solid var(--border);
+      background:#fff;
+    }
+    th,td{
+      border:1px solid var(--border);
+      padding:10px;
+      text-align:left;
+      vertical-align:top;
+    }
+    thead th{ background: #f1f7ff; }
+    tbody tr:nth-child(odd){ background: #fcfcfc; } /* yatay renklendirme */
+    tbody tr:hover{ background: #f7fbff; }
+
+    /* Timeline */
+    .timeline{
+      position:relative;
+      margin-top: 8px;
+      padding-left: 16px;
+    }
+    .timeline::before{
+      content:"";
+      position:absolute;
+      left:6px;
+      top:0;
+      bottom:0;
+      width:2px;
+      background: var(--accent);
+      opacity:.5;
+    }
+    .t-item{
+      position:relative;
+      border:1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px 12px;
+      margin: 10px 0;
+      background:#fff;
+    }
+    .t-item::before{
+      content:"";
+      position:absolute;
+      left:-1px;
+      top: 14px;
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(31,111,235,.12);
+    }
+    .t-date{ font-size: 12px; color: var(--muted); }
+    .t-title{ font-weight: 800; margin: 4px 0 6px; }
+
+    /* Form */
+    form .row{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+    }
+    @media (max-width: 900px){ form .row{ grid-template-columns: 1fr; } }
+    label{ display:block; margin: 10px 0 6px; font-size: 13px; color: var(--muted); }
+    input, select, textarea{
+      width:100%;
+      border:1px solid var(--border);
+      border-radius: 10px;
+      padding:10px 10px;
+      font: inherit;
+      background:#fff;
+      color:#111;
+    }
+    textarea{ min-height: 120px; resize: vertical; }
+    .help{ font-size: 12px; color: var(--muted); margin-top:6px; }
+    .actions{ display:flex; gap:8px; flex-wrap:wrap; margin-top: 10px; }
+    .alert{
+      border:1px solid var(--border);
+      border-radius: 12px;
+      padding:10px 12px;
+      background:#fff;
+      margin-top: 10px;
+    }
+    .ok{ border-color: rgba(10,122,47,.35); background: rgba(10,122,47,.06); color: var(--ok); }
+    .bad{ border-color: rgba(176,0,32,.35); background: rgba(176,0,32,.06); color: var(--bad); }
+    .hidden{ display:none; }
+
+    /* Footer */
+    footer{
+      border-top:1px solid var(--border);
+      padding: 16px 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* Small helper for honeypot */
+    .hp{ position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
+  </style>
 </head>
+
 <body>
-
-  <div class="nav">
-    <div class="nav-inner container">
-      <div class="brand">
-        <img src="assets/logo.svg" alt="Logo">
+<header>
+  <div class="container nav">
+    <div class="brand">
+      <div class="logo">NB</div>
+      <div>
+        <div class="brand-title">nehirbektas.dev</div>
+        <div class="badge">Final • HTML/CSS/JS</div>
       </div>
+    </div>
 
-      <div class="menu">
-        <a class="active" href="index.html" data-i18n="nav_home">Home</a>
-        <a href="#cv" data-i18n="nav_cv">CV</a>
-        <a href="page2.html" data-i18n="nav_page2">2. Sayfa</a>
-      </div>
+    <nav aria-label="Main">
+      <ul>
+        <li><a href="#home" data-i18n="nav_home">Home</a></li>
+        <li><a href="#cv" data-i18n="nav_cv">CV</a></li>
+        <li><a href="#timeline" data-i18n="nav_timeline">Timeline</a></li>
+        <li><a href="#schedule" data-i18n="nav_schedule">Schedule</a></li>
+        <li><a href="#form" data-i18n="nav_form">Form</a></li>
+        <li><a href="#news" data-i18n="nav_news">News</a></li>
+      </ul>
+    </nav>
 
-      <div class="lang">
-        <button data-lang="tr" class="active">TR</button>
-        <button data-lang="en">EN</button>
-      </div>
+    <div class="lang">
+      <button id="btnTR" class="primary" type="button">TR</button>
+      <button id="btnEN" type="button">EN</button>
     </div>
   </div>
+</header>
 
-  <div class="container">
-    <div class="hero">
-      <div class="hero-grid">
-        <div class="card">
-          <h2 data-i18n="hero_title">Web Design Final Projesi</h2>
-          <p class="muted" data-i18n="hero_desc"></p>
+<main class="container">
 
-          <div class="badges">
-            <span class="badge">HTML</span>
-            <span class="badge">CSS</span>
-            <span class="badge">JavaScript</span>
-            <span class="badge">Responsive</span>
-            <span class="badge">GitHub Pages</span>
-          </div>
+  <!-- HOME -->
+  <section id="home" class="card">
+    <div class="grid">
+      <div>
+        <h1 data-i18n="hero_title">Final Web Tasarım Projesi</h1>
+        <p class="muted" data-i18n="hero_desc">
+          Bu tek dosyalık web sitesi: div yapısı, tablo (schedule), timeline template, form (checkbox + iframe), TR/EN dil butonu, istatistik motoru ve spam koruma içerir.
+        </p>
+
+        <hr class="sep">
+
+        <div class="section-title">
+          <h2 data-i18n="quick_title">Neler Var?</h2>
+          <div class="mini" data-i18n="quick_note">Menüden bölümlere geçebilirsin.</div>
         </div>
 
-        <div class="card">
-          <h3 data-i18n="hero_quick">Hızlı Linkler</h3>
-          <p class="muted" data-i18n="hero_quick_desc"></p>
-          <a class="btn primary" href="page2.html" data-i18n="hero_btn">2. Sayfaya Git</a>
+        <div class="pill-row">
+          <span class="pill" data-i18n="pill_layout">Div + CSS format</span>
+          <span class="pill" data-i18n="pill_timeline">Timeline template</span>
+          <span class="pill" data-i18n="pill_table">Schedule tablo</span>
+          <span class="pill" data-i18n="pill_form">Form + iframe + checkbox</span>
+          <span class="pill" data-i18n="pill_lang">TR / EN</span>
+          <span class="pill" data-i18n="pill_stats">Statistical engine</span>
+          <span class="pill" data-i18n="pill_spam">Spam koruma</span>
+        </div>
+
+        <hr class="sep">
+
+        <div class="card soft">
+          <h3 data-i18n="about_title">Kısa Tanıtım</h3>
+          <p class="muted" data-i18n="about_text">
+            Merhaba! Ben Nehir Bektaş. İstanbul Topkapı Üniversitesi Yönetim Bilişim Sistemleri (İngilizce) 2. sınıf öğrencisiyim.
+          </p>
         </div>
       </div>
-    </div>
 
-    <div id="cv" class="card">
+      <div class="card soft">
+        <h2 data-i18n="stats_title">Statistical Engine</h2>
+        <div class="stats" aria-label="Statistics">
+          <div class="stat">
+            <div class="muted" data-i18n="stats_total">Toplam Görüntülenme</div>
+            <div class="big" data-stat="total">0</div>
+          </div>
+          <div class="stat">
+            <div class="muted" data-i18n="stats_today">Bugün</div>
+            <div class="big" data-stat="today">0</div>
+          </div>
+          <div class="stat">
+            <div class="muted" data-i18n="stats_lang">Dil</div>
+            <div class="big" data-stat="lang">TR</div>
+          </div>
+        </div>
+        <p class="help" data-i18n="stats_note">
+          Not: Bu demo istatistik motoru localStorage kullanır (sunucu gerektirmez).
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div style="height:12px"></div>
+
+  <!-- CV -->
+  <section id="cv" class="card">
+    <div class="section-title">
       <h2 data-i18n="cv_title">CV</h2>
+      <div class="mini" data-i18n="cv_note">Div + grid + kutu düzeni</div>
+    </div>
 
-      <div class="grid-2">
-        <div class="card">
-          <h3 data-i18n="about_title">Hakkımda</h3>
-          <p class="muted" data-i18n="about_text"></p>
+    <div class="cv-grid">
+      <div class="card soft">
+        <h3 data-i18n="cv_identity">Kimlik Bilgileri</h3>
+        <div class="kv" aria-label="Key Value">
+          <div data-i18n="cv_name_label">Ad Soyad</div><div>Nehi̇r Bektaş</div>
+          <div data-i18n="cv_city_label">Şehir</div><div>İstanbul</div>
+          <div data-i18n="cv_school_label">Üniversite</div><div>İstanbul Topkapı Üniversitesi</div>
+          <div data-i18n="cv_dept_label">Bölüm</div><div data-i18n="cv_dept_value">Yönetim Bilişim Sistemleri (İngilizce)</div>
+          <div data-i18n="cv_year_label">Sınıf</div><div data-i18n="cv_year_value">2. Sınıf</div>
+        </div>
+      </div>
 
-          <div class="hr"></div>
-          <h3 data-i18n="info_title">Bilgiler</h3>
-
-          <div class="kv">
-            <strong data-i18n="name">Ad Soyad</strong>
-            <span>Nehir Bektaş</span>
-          </div>
-          <div class="kv">
-            <strong data-i18n="school">Okul / Bölüm</strong>
-            <span>Topkapı Üniversitesi – MIS (English)</span>
-          </div>
-          <div class="kv">
-            <strong data-i18n="city">Şehir</strong>
-            <span>İstanbul</span>
-          </div>
-          <div class="kv">
-            <strong data-i18n="email">E-mail</strong>
-            <span>nehirbektas159@gmail.com</span>
-          </div>
+      <div class="card soft">
+        <h3 data-i18n="cv_skills">Yetenekler</h3>
+        <div class="pill-row">
+          <span class="pill">HTML</span>
+          <span class="pill">CSS</span>
+          <span class="pill">JavaScript</span>
+          <span class="pill" data-i18n="cv_skill_ui">Temel UI Düzeni</span>
+          <span class="pill" data-i18n="cv_skill_resp">Responsive Mantık</span>
         </div>
 
-        <div class="card">
-          <h3 data-i18n="skills_title">Teknik Yetenekler</h3>
+        <hr class="sep">
 
-          <div class="kv">
-            <strong data-i18n="s_html">HTML</strong>
-            <span data-i18n="lvl_mix">Başlangıç - İyi</span>
-          </div>
-          <div class="kv">
-            <strong data-i18n="s_css">CSS</strong>
-            <span data-i18n="lvl_mix">Başlangıç - İyi</span>
-          </div>
-          <div class="kv">
-            <strong data-i18n="s_js">JavaScript</strong>
-            <span data-i18n="lvl_mix">Başlangıç - İyi</span>
-          </div>
+        <h3 data-i18n="cv_interests">İlgi Alanları</h3>
+        <ul>
+          <li data-i18n="cv_art_interest">Sanatsal: Dijital tasarıma ilgi, müzik dinlemek</li>
+          <li data-i18n="cv_sport_interest">Sportif: Yoga, yürüyüş</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-          <div class="hr"></div>
+  <div style="height:12px"></div>
 
-          <h3 data-i18n="activities_title">Faaliyetler</h3>
-          <div class="grid-2">
-            <div class="card">
-              <h3 data-i18n="art_title">Sanatsal</h3>
-              <p class="muted">• <span data-i18n="art1"></span></p>
-              <p class="muted">• <span data-i18n="art2"></span></p>
-            </div>
-            <div class="card">
-              <h3 data-i18n="sport_title">Sportif</h3>
-              <p class="muted">• <span data-i18n="sport1"></span></p>
-              <p class="muted">• <span data-i18n="sport2"></span></p>
-            </div>
-          </div>
+  <!-- TIMELINE -->
+  <section id="timeline" class="card">
+    <div class="section-title">
+      <h2 data-i18n="tl_title">Timeline (Template)</h2>
+      <div class="mini" data-i18n="tl_note">Template yapısı: tarih + başlık + açıklama</div>
+    </div>
 
-        </div>
+    <div class="timeline" aria-label="Timeline">
+      <div class="t-item">
+        <div class="t-date">2026-01-01</div>
+        <div class="t-title" data-i18n="tl_item1_title">Proje Planlama</div>
+        <div class="muted" data-i18n="tl_item1_desc">Tek dosyalık yapı, menü ve bölümler tasarlandı.</div>
+      </div>
+      <div class="t-item">
+        <div class="t-date">2026-01-02</div>
+        <div class="t-title" data-i18n="tl_item2_title">Schedule Tablo</div>
+        <div class="muted" data-i18n="tl_item2_desc">Border ve yatay renklendirme (zebra) eklendi.</div>
+      </div>
+      <div class="t-item">
+        <div class="t-date">2026-01-03</div>
+        <div class="t-title" data-i18n="tl_item3_title">Form + Spam Koruma</div>
+        <div class="muted" data-i18n="tl_item3_desc">Checkbox + iframe + honeypot + captcha tamamlandı.</div>
       </div>
     </div>
 
-    <div class="card">
-      <h2 data-i18n="stats_title">Statistical Engine</h2>
-      <p class="muted" data-i18n="stats_desc"></p>
+    <hr class="sep">
 
-      <div class="grid-2">
-        <div class="kv">
-          <strong><span data-i18n="stat_visits">Ziyaret</span> (this page)</strong>
-          <span id="visitCount">0</span>
+    <h3 data-i18n="spam_title">Timeline Spam Koruma (Zorunlu)</h3>
+    <p class="muted" data-i18n="spam_desc">
+      Botlara karşı: görünmez honeypot alanı + basit matematik doğrulaması.
+    </p>
+
+    <div id="spamOk" class="alert ok hidden"></div>
+    <div id="spamBad" class="alert bad hidden"></div>
+
+    <!-- Spam protected mini form -->
+    <form id="timelineForm" class="card soft" autocomplete="off">
+      <!-- honeypot -->
+      <div class="hp">
+        <label>Company</label>
+        <input type="text" name="company" tabindex="-1" />
+      </div>
+
+      <div class="row">
+        <div>
+          <label data-i18n="spam_name">Ad</label>
+          <input type="text" name="t_name" required />
         </div>
-        <div class="kv">
-          <strong><span data-i18n="stat_submits">Form Gönderimi</span> (total)</strong>
-          <span id="submitCount">0</span>
+        <div>
+          <label data-i18n="spam_comment">Yorum</label>
+          <input type="text" name="t_comment" required />
         </div>
       </div>
 
-      <div class="kv">
-        <strong>Total Visits (all pages)</strong>
-        <span id="totalVisits">0</span>
-      </div>
+      <label><span data-i18n="spam_captcha_label">Captcha</span>: <strong data-captcha="q"></strong></label>
+      <input type="number" name="captcha_answer" required />
+      <input type="hidden" data-captcha="expected" />
 
-      <p class="small">
-        * Sayaçlar tarayıcıda (localStorage) tutulur. Hocaya “istatistik motoru” göstermek için.
-      </p>
+      <div class="actions">
+        <button type="submit" class="primary" data-i18n="spam_submit">Submit</button>
+        <button type="reset" data-i18n="spam_reset">Reset</button>
+      </div>
+    </form>
+  </section>
+
+  <div style="height:12px"></div>
+
+  <!-- SCHEDULE -->
+  <section id="schedule" class="card">
+    <div class="section-title">
+      <h2 data-i18n="sch_title">Ders Programı / Schedule</h2>
+      <div class="mini" data-i18n="sch_note">Border + yatay renklendirme şartı burada</div>
     </div>
 
-    <div class="footer" data-i18n="footer">© 2026 Nehir Bektaş – Web Design Final Projesi</div>
+    <p class="muted" data-i18n="sch_from_image">
+      Aşağıdaki program, gönderdiğin görseldeki ders saatlerine göre yazıldı.
+    </p>
+
+    <!-- Weekly schedule table -->
+    <table aria-label="Weekly Schedule">
+      <thead>
+        <tr>
+          <th data-i18n="sch_day">Gün</th>
+          <th data-i18n="sch_time">Saat</th>
+          <th data-i18n="sch_code">Ders Kodu</th>
+          <th data-i18n="sch_course">Ders Adı</th>
+          <th data-i18n="sch_room">Yer</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-i18n="day_mon">Pazartesi</td>
+          <td>12:00 - 15:00</td>
+          <td>IMS263</td>
+          <td>Management and Organization</td>
+          <td>Altunizade AL226 2</td>
+        </tr>
+        <tr>
+          <td data-i18n="day_tue">Salı</td>
+          <td>09:00 - 12:00</td>
+          <td>IMS201</td>
+          <td>Data Structure and Database Management Systems</td>
+          <td>Altunizade ALB32 - 1</td>
+        </tr>
+        <tr>
+          <td data-i18n="day_tue">Salı</td>
+          <td>14:00 - 17:00</td>
+          <td>IMS209</td>
+          <td>Marketing Management</td>
+          <td>Altunizade AL201 2</td>
+        </tr>
+        <tr>
+          <td data-i18n="day_wed">Çarşamba</td>
+          <td>12:00 - 15:00</td>
+          <td>IMS259</td>
+          <td>Business Process Analysis</td>
+          <td>Altunizade AL135-136 1</td>
+        </tr>
+        <tr>
+          <td data-i18n="day_thu">Perşembe</td>
+          <td>09:00 - 12:00</td>
+          <td>IMS207</td>
+          <td>Web Design and Internet Programming</td>
+          <td>Altunizade AL234 2</td>
+        </tr>
+        <tr>
+          <td data-i18n="day_thu">Perşembe</td>
+          <td>14:00 - 17:00</td>
+          <td>FCC109</td>
+          <td>Mathematics</td>
+          <td>Altunizade AL127-128 1</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr class="sep">
+
+    <!-- Course list table (from image bottom list) -->
+    <h3 data-i18n="course_list_title">Ders Listesi (Section / Öğretim Elemanı / Kredi)</h3>
+    <table aria-label="Course List">
+      <thead>
+        <tr>
+          <th data-i18n="cl_code">Ders Kodu</th>
+          <th data-i18n="cl_name">Ders Adı</th>
+          <th data-i18n="cl_section">Section</th>
+          <th data-i18n="cl_teacher">Öğretim Elemanı</th>
+          <th data-i18n="cl_credit">Kredi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>FCC109</td><td>Mathematics</td><td>2</td><td>Merve Ersoy</td><td>3</td></tr>
+        <tr><td>IMS201</td><td>Data Structure and Database Management Systems</td><td>2</td><td>Yasemin Demirel</td><td>3</td></tr>
+        <tr><td>IMS207</td><td>Web Design and Internet Programming</td><td>1</td><td>Fazlı Yıldırım</td><td>3</td></tr>
+        <tr><td>IMS209</td><td>Marketing Management</td><td>1</td><td>Meziyet Uyanık</td><td>3</td></tr>
+        <tr><td>IMS259</td><td>Business Process Analysis</td><td>2</td><td>Tuğba Dayıoğlu</td><td>3</td></tr>
+        <tr><td>IMS263</td><td>Management and Organization</td><td>1</td><td>Güneş Küçükyazıcı</td><td>3</td></tr>
+      </tbody>
+    </table>
+
+    <hr class="sep">
+
+    <h3 data-i18n="activities_title">Sanatsal & Sportif Faaliyetler</h3>
+    <div class="pill-row">
+      <span class="pill" data-i18n="act_art">Sanatsal: Dijital tasarım, müzik dinlemek</span>
+      <span class="pill" data-i18n="act_sport">Sportif: Yoga, yürüyüş</span>
+    </div>
+  </section>
+
+  <div style="height:12px"></div>
+
+  <!-- FORM -->
+  <section id="form" class="card">
+    <div class="section-title">
+      <h2 data-i18n="form_title">Form Sayfası</h2>
+      <div class="mini" data-i18n="form_note">Checkbox + iframe + submit → JS mail</div>
+    </div>
+
+    <p class="muted" data-i18n="form_desc">
+      Bu form veri toplar. Submit olunca JavaScript bir mailto linki üretip mail uygulamanı açar.
+    </p>
+
+    <div id="formOk" class="alert ok hidden" data-i18n="form_ok">Mail hazırlanıyor…</div>
+
+    <form id="mainForm" class="card soft">
+      <div class="row">
+        <div>
+          <label data-i18n="f_name">Ad Soyad</label>
+          <input name="name" required />
+        </div>
+        <div>
+          <label data-i18n="f_email">E-posta</label>
+          <input type="email" name="email" required />
+        </div>
+      </div>
+
+      <label data-i18n="f_topic">Konu</label>
+      <select name="topic" required>
+        <option value="General" data-i18n="topic_general">Genel</option>
+        <option value="Schedule" data-i18n="topic_schedule">Ders Programı</option>
+        <option value="Project" data-i18n="topic_project">Proje</option>
+      </select>
+
+      <label data-i18n="f_check">İlgi Alanları (Checkbox)</label>
+      <div class="pill-row" role="group" aria-label="Checkbox group">
+        <label class="pill"><input type="checkbox" name="interests" value="Digital Design" /> <span data-i18n="cb_design">Dijital Tasarım</span></label>
+        <label class="pill"><input type="checkbox" name="interests" value="Music" /> <span data-i18n="cb_music">Müzik</span></label>
+        <label class="pill"><input type="checkbox" name="interests" value="Yoga" /> <span data-i18n="cb_yoga">Yoga</span></label>
+        <label class="pill"><input type="checkbox" name="interests" value="Walking" /> <span data-i18n="cb_walk">Yürüyüş</span></label>
+      </div>
+
+      <label data-i18n="f_msg">Mesaj</label>
+      <textarea name="message" required placeholder="..."></textarea>
+
+      <div class="actions">
+        <button type="submit" class="primary" data-i18n="f_submit">Submit</button>
+        <button type="reset" data-i18n="f_reset">Reset</button>
+      </div>
+
+      <div class="help" data-i18n="f_help">
+        Hocanın maili için kodda TEACHER_EMAIL alanını değiştir.
+      </div>
+    </form>
+
+    <hr class="sep">
+
+    <h3 data-i18n="iframe_title">iframe (Zorunlu)</h3>
+    <p class="muted" data-i18n="iframe_desc">Örnek olarak harita gömüldü. İstersen YouTube da koyabilirsin.</p>
+
+    <div class="card soft">
+      <iframe
+        src="https://www.openstreetmap.org/export/embed.html?bbox=28.97%2C41.00%2C29.06%2C41.06&layer=mapnik"
+        title="Map iframe"
+        style="width:100%; height:320px; border:1px solid var(--border); border-radius:12px;"
+        loading="lazy"></iframe>
+    </div>
+  </section>
+
+  <div style="height:12px"></div>
+
+  <!-- NEWS -->
+  <section id="news" class="card">
+    <div class="section-title">
+      <h2 data-i18n="news_title">News & Publications</h2>
+      <div class="mini" data-i18n="news_note">Kart mantığı + tarih + kategori</div>
+    </div>
+
+    <p class="muted" data-i18n="news_desc">
+      News/Publication kurulumu: içerikleri kartlar halinde, tarih + kategori ile listeliyoruz. TR/EN için metinler i18n anahtarlarına bağlı.
+    </p>
+
+    <div class="cv-grid">
+      <article class="card soft">
+        <div class="badge" style="display:inline-block" data-i18n="news_card1_meta">NEWS • 2026-01-01</div>
+        <h3 data-i18n="news_card1_title">Site taslağı hazırlandı</h3>
+        <p class="muted" data-i18n="news_card1_desc">Üst menü, bölümler ve sade tasarım tamamlandı.</p>
+      </article>
+
+      <article class="card soft">
+        <div class="badge" style="display:inline-block" data-i18n="news_card2_meta">PUBLICATION • 2026-01-02</div>
+        <h3 data-i18n="news_card2_title">Schedule tablo eklendi</h3>
+        <p class="muted" data-i18n="news_card2_desc">Border ve zebra renklendirme ile ders programı oluşturuldu.</p>
+      </article>
+
+      <article class="card soft">
+        <div class="badge" style="display:inline-block" data-i18n="news_card3_meta">PUBLICATION • 2026-01-03</div>
+        <h3 data-i18n="news_card3_title">Form + iframe + checkbox</h3>
+        <p class="muted" data-i18n="news_card3_desc">Submit ile mailto çalışıyor, iframe gömülü.</p>
+      </article>
+
+      <article class="card soft">
+        <div class="badge" style="display:inline-block" data-i18n="news_card4_meta">PUBLICATION • 2026-01-04</div>
+        <h3 data-i18n="news_card4_title">Timeline spam koruma</h3>
+        <p class="muted" data-i18n="news_card4_desc">Honeypot + captcha ile basit anti-spam eklendi.</p>
+      </article>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div>© <span id="year"></span> • Nehir Bektaş • nehirbektas.dev</div>
+    <div class="mini" data-i18n="footer_note">Tek dosya (index.html) — GitHub Pages ile yayınlanır.</div>
   </div>
+</footer>
 
+<script>
+  // =========================
+  // CONFIG
+  // =========================
+  const TEACHER_EMAIL = "hocam@example.com"; // burayı hocanın mailiyle değiştir
+
+  // =========================
+  // i18n dictionary
+  // =========================
+  const dict = {
+    tr: {
+      nav_home:"Home",
+      nav_cv:"CV",
+      nav_timeline:"Timeline",
+      nav_schedule:"Schedule",
+      nav_form:"Form",
+      nav_news:"News",
+
+      hero_title:"Final Web Tasarım Projesi",
+      hero_desc:"Bu tek dosyalık web sitesi: div yapısı, tablo (schedule), timeline template, form (checkbox + iframe), TR/EN dil butonu, istatistik motoru ve spam koruma içerir.",
+      quick_title:"Neler Var?",
+      quick_note:"Menüden bölümlere geçebilirsin.",
+      pill_layout:"Div + CSS format",
+      pill_timeline:"Timeline template",
+      pill_table:"Schedule tablo",
+      pill_form:"Form + iframe + checkbox",
+      pill_lang:"TR / EN",
+      pill_stats:"Statistical engine",
+      pill_spam:"Spam koruma",
+      about_title:"Kısa Tanıtım",
+      about_text:"Merhaba! Ben Nehir Bektaş. İstanbul Topkapı Üniversitesi Yönetim Bilişim Sistemleri (İngilizce) 2. sınıf öğrencisiyim.",
+
+      stats_title:"Statistical Engine",
+      stats_total:"Toplam Görüntülenme",
+      stats_today:"Bugün",
+      stats_lang:"Dil",
+      stats_note:"Not: Bu demo istatistik motoru localStorage kullanır (sunucu gerektirmez).",
+
+      cv_title:"CV",
+      cv_note:"Div + grid + kutu düzeni",
+      cv_identity:"Kimlik Bilgileri",
+      cv_name_label:"Ad Soyad",
+      cv_city_label:"Şehir",
+      cv_school_label:"Üniversite",
+      cv_dept_label:"Bölüm",
+      cv_dept_value:"Yönetim Bilişim Sistemleri (İngilizce)",
+      cv_year_label:"Sınıf",
+      cv_year_value:"2. Sınıf",
+      cv_skills:"Yetenekler",
+      cv_skill_ui:"Temel UI Düzeni",
+      cv_skill_resp:"Responsive Mantık",
+      cv_interests:"İlgi Alanları",
+      cv_art_interest:"Sanatsal: Dijital tasarıma ilgi, müzik dinlemek",
+      cv_sport_interest:"Sportif: Yoga, yürüyüş",
+
+      tl_title:"Timeline (Template)",
+      tl_note:"Template yapısı: tarih + başlık + açıklama",
+      tl_item1_title:"Proje Planlama",
+      tl_item1_desc:"Tek dosyalık yapı, menü ve bölümler tasarlandı.",
+      tl_item2_title:"Schedule Tablo",
+      tl_item2_desc:"Border ve yatay renklendirme (zebra) eklendi.",
+      tl_item3_title:"Form + Spam Koruma",
+      tl_item3_desc:"Checkbox + iframe + honeypot + captcha tamamlandı.",
+
+      spam_title:"Timeline Spam Koruma (Zorunlu)",
+      spam_desc:"Botlara karşı: görünmez honeypot alanı + basit matematik doğrulaması.",
+      spam_name:"Ad",
+      spam_comment:"Yorum",
+      spam_captcha_label:"Captcha",
+      spam_submit:"Submit",
+      spam_reset:"Reset",
+
+      sch_title:"Ders Programı / Schedule",
+      sch_note:"Border + yatay renklendirme şartı burada",
+      sch_from_image:"Aşağıdaki program, gönderdiğin görseldeki ders saatlerine göre yazıldı.",
+      sch_day:"Gün",
+      sch_time:"Saat",
+      sch_code:"Ders Kodu",
+      sch_course:"Ders Adı",
+      sch_room:"Yer",
+      day_mon:"Pazartesi",
+      day_tue:"Salı",
+      day_wed:"Çarşamba",
+      day_thu:"Perşembe",
+      course_list_title:"Ders Listesi (Section / Öğretim Elemanı / Kredi)",
+      cl_code:"Ders Kodu",
+      cl_name:"Ders Adı",
+      cl_section:"Section",
+      cl_teacher:"Öğretim Elemanı",
+      cl_credit:"Kredi",
+      activities_title:"Sanatsal & Sportif Faaliyetler",
+      act_art:"Sanatsal: Dijital tasarım, müzik dinlemek",
+      act_sport:"Sportif: Yoga, yürüyüş",
+
+      form_title:"Form Sayfası",
+      form_note:"Checkbox + iframe + submit → JS mail",
+      form_desc:"Bu form veri toplar. Submit olunca JavaScript bir mailto linki üretip mail uygulamanı açar.",
+      form_ok:"Form gönderimi hazırlandı. Mail uygulaman açılacak.",
+      f_name:"Ad Soyad",
+      f_email:"E-posta",
+      f_topic:"Konu",
+      topic_general:"Genel",
+      topic_schedule:"Ders Programı",
+      topic_project:"Proje",
+      f_check:"İlgi Alanları (Checkbox)",
+      cb_design:"Dijital Tasarım",
+      cb_music:"Müzik",
+      cb_yoga:"Yoga",
+      cb_walk:"Yürüyüş",
+      f_msg:"Mesaj",
+      f_submit:"Submit",
+      f_reset:"Reset",
+      f_help:"Hocanın maili için kodda TEACHER_EMAIL alanını değiştir.",
+
+      iframe_title:"iframe (Zorunlu)",
+      iframe_desc:"Örnek olarak harita gömüldü. İstersen YouTube da koyabilirsin.",
+
+      news_title:"News & Publications",
+      news_note:"Kart mantığı + tarih + kategori",
+      news_desc:"News/Publication kurulumu: içerikleri kartlar halinde, tarih + kategori ile listeliyoruz. TR/EN için metinler i18n anahtarlarına bağlı.",
+      news_card1_meta:"NEWS • 2026-01-01",
+      news_card1_title:"Site taslağı hazırlandı",
+      news_card1_desc:"Üst menü, bölümler ve sade tasarım tamamlandı.",
+      news_card2_meta:"PUBLICATION • 2026-01-02",
+      news_card2_title:"Schedule tablo eklendi",
+      news_card2_desc:"Border ve zebra renklendirme ile ders programı oluşturuldu.",
+      news_card3_meta:"PUBLICATION • 2026-01-03",
+      news_card3_title:"Form + iframe + checkbox",
+      news_card3_desc:"Submit ile mailto çalışıyor, iframe gömülü.",
+      news_card4_meta:"PUBLICATION • 2026-01-04",
+      news_card4_title:"Timeline spam koruma",
+      news_card4_desc:"Honeypot + captcha ile basit anti-spam eklendi.",
+
+      footer_note:"Tek dosya (index.html) — GitHub Pages ile yayınlanır."
+    },
+
+    en: {
+      nav_home:"Home",
+      nav_cv:"CV",
+      nav_timeline:"Timeline",
+      nav_schedule:"Schedule",
+      nav_form:"Form",
+      nav_news:"News",
+
+      hero_title:"Final Web Design Project",
+      hero_desc:"This single-file website includes: div layout, schedule table, timeline template, form (checkbox + iframe), TR/EN language buttons, a statistical engine and spam protection.",
+      quick_title:"What’s Inside?",
+      quick_note:"Use the menu to jump to sections.",
+      pill_layout:"Div + CSS formatting",
+      pill_timeline:"Timeline template",
+      pill_table:"Schedule table",
+      pill_form:"Form + iframe + checkbox",
+      pill_lang:"TR / EN",
+      pill_stats:"Statistical engine",
+      pill_spam:"Spam protection",
+      about_title:"Short Bio",
+      about_text:"Hi! I’m Nehir Bektaş. I’m a 2nd-year student in Management Information Systems (English) at Istanbul Topkapı University.",
+
+      stats_title:"Statistical Engine",
+      stats_total:"Total Views",
+      stats_today:"Today",
+      stats_lang:"Language",
+      stats_note:"Note: This demo stats engine uses localStorage (no server required).",
+
+      cv_title:"CV",
+      cv_note:"Div + grid + card layout",
+      cv_identity:"Identity",
+      cv_name_label:"Full Name",
+      cv_city_label:"City",
+      cv_school_label:"University",
+      cv_dept_label:"Department",
+      cv_dept_value:"Management Information Systems (English)",
+      cv_year_label:"Year",
+      cv_year_value:"2nd Year",
+      cv_skills:"Skills",
+      cv_skill_ui:"Basic UI Layout",
+      cv_skill_resp:"Responsive Logic",
+      cv_interests:"Interests",
+      cv_art_interest:"Artistic: Interested in digital design, listening to music",
+      cv_sport_interest:"Sports: Yoga, walking",
+
+      tl_title:"Timeline (Template)",
+      tl_note:"Template structure: date + title + description",
+      tl_item1_title:"Project Planning",
+      tl_item1_desc:"Single-file structure, menu and sections were designed.",
+      tl_item2_title:"Schedule Table",
+      tl_item2_desc:"Borders and zebra row coloring were added.",
+      tl_item3_title:"Form + Spam Protection",
+      tl_item3_desc:"Checkbox + iframe + honeypot + captcha completed.",
+
+      spam_title:"Timeline Spam Protection (Required)",
+      spam_desc:"Against bots: hidden honeypot field + simple math verification.",
+      spam_name:"Name",
+      spam_comment:"Comment",
+      spam_captcha_label:"Captcha",
+      spam_submit:"Submit",
+      spam_reset:"Reset",
+
+      sch_title:"Class Schedule",
+      sch_note:"Borders + zebra rows requirement is here",
+      sch_from_image:"The schedule below is written based on the timetable image you shared.",
+      sch_day:"Day",
+      sch_time:"Time",
+      sch_code:"Course Code",
+      sch_course:"Course Name",
+      sch_room:"Location",
+      day_mon:"Monday",
+      day_tue:"Tuesday",
+      day_wed:"Wednesday",
+      day_thu:"Thursday",
+      course_list_title:"Course List (Section / Instructor / Credit)",
+      cl_code:"Course Code",
+      cl_name:"Course Name",
+      cl_section:"Section",
+      cl_teacher:"Instructor",
+      cl_credit:"Credit",
+      activities_title:"Artistic & Sports Activities",
+      act_art:"Artistic: Digital design, listening to music",
+      act_sport:"Sports: Yoga, walking",
+
+      form_title:"Form Page",
+      form_note:"Checkbox + iframe + submit → JS email",
+      form_desc:"This form collects data. On submit, JavaScript creates a mailto link and opens your email client.",
+      form_ok:"Form is ready. Your email client will open.",
+      f_name:"Full Name",
+      f_email:"Email",
+      f_topic:"Topic",
+      topic_general:"General",
+      topic_schedule:"Schedule",
+      topic_project:"Project",
+      f_check:"Interests (Checkbox)",
+      cb_design:"Digital Design",
+      cb_music:"Music",
+      cb_yoga:"Yoga",
+      cb_walk:"Walking",
+      f_msg:"Message",
+      f_submit:"Submit",
+      f_reset:"Reset",
+      f_help:"Change TEACHER_EMAIL in the code to your teacher’s email.",
+
+      iframe_title:"iframe (Required)",
+      iframe_desc:"A map is embedded as an example. You can embed YouTube as well.",
+
+      news_title:"News & Publications",
+      news_note:"Card layout + date + category",
+      news_desc:"How to build News/Publication: list items as cards with date + category. For TR/EN, texts are connected to i18n keys.",
+      news_card1_meta:"NEWS • 2026-01-01",
+      news_card1_title:"Website draft created",
+      news_card1_desc:"Top menu, sections and the basic design were completed.",
+      news_card2_meta:"PUBLICATION • 2026-01-02",
+      news_card2_title:"Schedule table added",
+      news_card2_desc:"A timetable was built with borders and zebra rows.",
+      news_card3_meta:"PUBLICATION • 2026-01-03",
+      news_card3_title:"Form + iframe + checkbox",
+      news_card3_desc:"Submit triggers mailto, iframe is embedded.",
+      news_card4_meta:"PUBLICATION • 2026-01-04",
+      news_card4_title:"Timeline spam protection",
+      news_card4_desc:"Simple anti-spam with honeypot + captcha.",
+
+      footer_note:"Single file (index.html) — published via GitHub Pages."
+    }
+  };
+
+  // =========================
+  // Language
+  // =========================
+  function getLang(){ return localStorage.getItem("lang") || "tr"; }
+  function setLang(lang){
+    localStorage.setItem("lang", lang);
+    applyI18n();
+    updateStatsUI();
+    // button style
+    document.getElementById("btnTR").classList.toggle("primary", lang==="tr");
+    document.getElementById("btnEN").classList.toggle("primary", lang==="en");
+  }
+  function applyI18n(){
+    const lang = getLang();
+    document.documentElement.lang = lang;
+    document.querySelectorAll("[data-i18n]").forEach(el=>{
+      const key = el.getAttribute("data-i18n");
+      if(dict[lang] && dict[lang][key]) el.textContent = dict[lang][key];
+    });
+  }
+
+  // =========================
+  // Stats Engine (localStorage)
+  // =========================
+  function todayKey(){
+    const d = new Date();
+    const yyyy = d.getFullYear();
+    const mm = String(d.getMonth()+1).padStart(2,"0");
+    const dd = String(d.getDate()).padStart(2,"0");
+    return `${yyyy}-${mm}-${dd}`;
+  }
+  function incCounter(key){
+    const val = Number(localStorage.getItem(key) || 0) + 1;
+    localStorage.setItem(key, String(val));
+    return val;
+  }
+  function readCounter(key){ return Number(localStorage.getItem(key) || 0); }
+  function initStats(){
+    incCounter("stats_total_views");
+    incCounter("stats_day_" + todayKey());
+  }
+  function updateStatsUI(){
+    const totalEl = document.querySelector("[data-stat='total']");
+    const todayEl = document.querySelector("[data-stat='today']");
+    const langEl  = document.querySelector("[data-stat='lang']");
+    if(totalEl) totalEl.textContent = readCounter("stats_total_views");
+    if(todayEl) todayEl.textContent = readCounter("stats_day_" + todayKey());
+    if(langEl)  langEl.textContent  = getLang().toUpperCase();
+  }
+
+  // =========================
+  // Timeline Spam Protection (honeypot + captcha)
+  // =========================
+  function initCaptcha(){
+    const a = Math.floor(Math.random()*8)+2;
+    const b = Math.floor(Math.random()*8)+2;
+    const q = document.querySelector("[data-captcha='q']");
+    const expected = document.querySelector("[data-captcha='expected']");
+    if(q && expected){
+      q.textContent = `${a} + ${b} = ?`;
+      expected.value = String(a+b);
+    }
+  }
+  function validateSpam(form){
+    const hp = form.querySelector("input[name='company']");
+    const ans = form.querySelector("input[name='captcha_answer']");
+    const expected = form.querySelector("input[data-captcha='expected']");
+    if(hp && hp.value.trim() !== "") return {ok:false, msg:"Spam detected (honeypot)."};
+    if(ans && expected && ans.value.trim() !== expected.value.trim()) return {ok:false, msg:"Captcha incorrect."};
+    return {ok:true, msg:"OK"};
+  }
+
+  // =========================
+  // Main Form: mailto
+  // =========================
+  function initMailForm(){
+    const form = document.getElementById("mainForm");
+    if(!form) return;
+
+    form.addEventListener("submit", (e)=>{
+      e.preventDefault();
+
+      const name = form.querySelector("[name='name']").value.trim();
+      const email = form.querySelector("[name='email']").value.trim();
+      const topic = form.querySelector("[name='topic']").value;
+      const message = form.querySelector("[name='message']").value.trim();
+      const interests = [...form.querySelectorAll("input[name='interests']:checked")].map(x=>x.value).join(", ");
+      const lang = getLang().toUpperCase();
+
+      const body =
+`Name: ${name}
+Email: ${email}
+Topic: ${topic}
+Interests: ${interests}
+Language: ${lang}
+
+Message:
+${message}
+`;
+
+      const subject = encodeURIComponent(`Final Form - ${topic}`);
+      const mailBody = encodeURIComponent(body);
+
+      const ok = document.getElementById("formOk");
+      ok?.classList.remove("hidden");
+
+      window.location.href = `mailto:${TEACHER_EMAIL}?subject=${subject}&body=${mailBody}`;
+    });
+  }
+
+  function initTimelineForm(){
+    const form = document.getElementById("timelineForm");
+    if(!form) return;
+
+    form.addEventListener("submit", (e)=>{
+      e.preventDefault();
+      const res = validateSpam(form);
+
+      const ok = document.getElementById("spamOk");
+      const bad = document.getElementById("spamBad");
+
+      if(res.ok){
+        bad?.classList.add("hidden");
+        ok?.classList.remove("hidden");
+        ok.textContent = "Saved (demo). Spam check passed ✅";
+        form.reset();
+        initCaptcha();
+      }else{
+        ok?.classList.add("hidden");
+        bad?.classList.remove("hidden");
+        bad.textContent = res.msg;
+      }
+    });
+  }
+
+  // =========================
+  // Boot
+  // =========================
+  document.addEventListener("DOMContentLoaded", ()=>{
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    initStats();
+    applyI18n();
+    updateStatsUI();
+    initCaptcha();
+    initMailForm();
+    initTimelineForm();
+
+    document.getElementById("btnTR").addEventListener("click", ()=>setLang("tr"));
+    document.getElementById("btnEN").addEventListener("click", ()=>setLang("en"));
+
+    // set button state on load
+    setLang(getLang());
+  });
+</script>
 </body>
 </html>
