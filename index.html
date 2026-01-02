@@ -3,14 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Web Design Final Projesi</title>
-
-  <!-- CSS BAĞLANTISI -->
+  <title>Nehir Bektaş | Final Project</title>
   <link rel="stylesheet" href="assets/style.css" />
+  <script defer src="assets/app.js"></script>
 </head>
 <body>
 
-  <!-- NAVBAR -->
   <div class="nav">
     <div class="nav-inner container">
       <div class="brand">
@@ -18,102 +16,134 @@
       </div>
 
       <div class="menu">
-        <a href="index.html" class="active">Home</a>
-        <a href="#cv">CV</a>
-        <a href="page2.html">2. Sayfa</a>
+        <a class="active" href="index.html" data-i18n="nav_home">Home</a>
+        <a href="#cv" data-i18n="nav_cv">CV</a>
+        <a href="page2.html" data-i18n="nav_page2">2. Sayfa</a>
       </div>
 
       <div class="lang">
-        <button class="active">TR</button>
-        <button>EN</button>
+        <button data-lang="tr" class="active">TR</button>
+        <button data-lang="en">EN</button>
       </div>
     </div>
   </div>
 
-  <!-- HERO -->
   <div class="container">
     <div class="hero">
       <div class="hero-grid">
         <div class="card">
-          <h2>Web Tasarım Final Projesi</h2>
-          <p class="muted">
-            Bu site Web Design dersi final projesi için hazırlanmıştır.
-            HTML, CSS ve JavaScript kullanılmıştır.
-          </p>
+          <h2 data-i18n="hero_title">Web Design Final Projesi</h2>
+          <p class="muted" data-i18n="hero_desc"></p>
 
           <div class="badges">
             <span class="badge">HTML</span>
             <span class="badge">CSS</span>
             <span class="badge">JavaScript</span>
             <span class="badge">Responsive</span>
+            <span class="badge">GitHub Pages</span>
           </div>
         </div>
 
         <div class="card">
-          <h3>Hızlı Linkler</h3>
-          <p class="muted">Timeline, ders programı, form ve news içerir.</p>
-          <a href="page2.html" class="btn primary">2. Sayfaya Git</a>
+          <h3 data-i18n="hero_quick">Hızlı Linkler</h3>
+          <p class="muted" data-i18n="hero_quick_desc"></p>
+          <a class="btn primary" href="page2.html" data-i18n="hero_btn">2. Sayfaya Git</a>
         </div>
       </div>
     </div>
 
-    <!-- CV -->
     <div id="cv" class="card">
-      <h2>CV</h2>
+      <h2 data-i18n="cv_title">CV</h2>
 
-      <div class="cv-grid">
+      <div class="grid-2">
         <div class="card">
-          <h3>Hakkımda</h3>
-          <p class="muted">
-            Ben Nehir Bektaş. Web tasarımı ve front-end geliştirme ile ilgileniyorum.
-            HTML, CSS ve JavaScript kullanarak modern web siteleri geliştiriyorum.
-          </p>
+          <h3 data-i18n="about_title">Hakkımda</h3>
+          <p class="muted" data-i18n="about_text"></p>
+
+          <div class="hr"></div>
+          <h3 data-i18n="info_title">Bilgiler</h3>
 
           <div class="kv">
-            <strong>İsim</strong>
+            <strong data-i18n="name">Ad Soyad</strong>
             <span>Nehir Bektaş</span>
           </div>
           <div class="kv">
-            <strong>Email</strong>
-            <span>nehir@example.com</span>
+            <strong data-i18n="school">Okul / Bölüm</strong>
+            <span>Topkapı Üniversitesi – MIS (English)</span>
           </div>
           <div class="kv">
-            <strong>Şehir</strong>
+            <strong data-i18n="city">Şehir</strong>
             <span>İstanbul</span>
+          </div>
+          <div class="kv">
+            <strong data-i18n="email">E-mail</strong>
+            <span>nehirbektas159@gmail.com</span>
           </div>
         </div>
 
         <div class="card">
-          <h3>Yetenekler</h3>
+          <h3 data-i18n="skills_title">Teknik Yetenekler</h3>
 
           <div class="kv">
-            <strong>HTML</strong>
-            <span>İyi</span>
+            <strong data-i18n="s_html">HTML</strong>
+            <span data-i18n="lvl_mix">Başlangıç - İyi</span>
           </div>
           <div class="kv">
-            <strong>CSS</strong>
-            <span>İyi</span>
+            <strong data-i18n="s_css">CSS</strong>
+            <span data-i18n="lvl_mix">Başlangıç - İyi</span>
           </div>
           <div class="kv">
-            <strong>JavaScript</strong>
-            <span>Orta</span>
+            <strong data-i18n="s_js">JavaScript</strong>
+            <span data-i18n="lvl_mix">Başlangıç - İyi</span>
           </div>
 
-          <h3>Eğitim</h3>
-          <div class="kv">
-            <strong>Üniversite</strong>
-            <span>Bilgisayar / Web Tasarım</span>
+          <div class="hr"></div>
+
+          <h3 data-i18n="activities_title">Faaliyetler</h3>
+          <div class="grid-2">
+            <div class="card">
+              <h3 data-i18n="art_title">Sanatsal</h3>
+              <p class="muted">• <span data-i18n="art1"></span></p>
+              <p class="muted">• <span data-i18n="art2"></span></p>
+            </div>
+            <div class="card">
+              <h3 data-i18n="sport_title">Sportif</h3>
+              <p class="muted">• <span data-i18n="sport1"></span></p>
+              <p class="muted">• <span data-i18n="sport2"></span></p>
+            </div>
           </div>
+
         </div>
       </div>
     </div>
 
-    <div class="footer">
-      © 2026 Nehir Bektaş – Web Design Final Projesi
+    <div class="card">
+      <h2 data-i18n="stats_title">Statistical Engine</h2>
+      <p class="muted" data-i18n="stats_desc"></p>
+
+      <div class="grid-2">
+        <div class="kv">
+          <strong><span data-i18n="stat_visits">Ziyaret</span> (this page)</strong>
+          <span id="visitCount">0</span>
+        </div>
+        <div class="kv">
+          <strong><span data-i18n="stat_submits">Form Gönderimi</span> (total)</strong>
+          <span id="submitCount">0</span>
+        </div>
+      </div>
+
+      <div class="kv">
+        <strong>Total Visits (all pages)</strong>
+        <span id="totalVisits">0</span>
+      </div>
+
+      <p class="small">
+        * Sayaçlar tarayıcıda (localStorage) tutulur. Hocaya “istatistik motoru” göstermek için.
+      </p>
     </div>
+
+    <div class="footer" data-i18n="footer">© 2026 Nehir Bektaş – Web Design Final Projesi</div>
   </div>
 
-  <!-- JS BAĞLANTISI -->
-  <script src="assets/app.js"></script>
 </body>
 </html>
