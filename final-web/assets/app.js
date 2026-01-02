@@ -1,80 +1,108 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const translations = {
+  const i18n = {
     tr: {
       nav_home: "Ana Sayfa",
-      nav_schedule: "Program & Timeline",
-      title_activities: "Faaliyetler",
-      artistic: "Sanatsal",
-      sport: "Sportif",
+      nav_cv: "CV",
+      nav_page2: "2. Sayfa",
 
-      artistic_1: "Dijital tasarıma ilgi",
-      artistic_2: "Müzik dinleme",
+      hero_title: "Web Design Final Projesi",
+      hero_desc:
+        "Bu site Web Design dersi final projesi için hazırlanmıştır. HTML, CSS ve JavaScript kullanılmıştır.",
+      hero_quick: "Hızlı Linkler",
+      hero_quick_desc:
+        "Timeline, ders programı, form, news/publications ve istatistik içerir.",
+      hero_btn: "2. Sayfaya Git",
 
-      sport_1: "Yoga",
-      sport_2: "Yürüyüş",
-
+      cv_title: "CV",
       about_title: "Hakkımda",
       about_text:
-        "Yönetim Bilişim Sistemleri (İngilizce) bölümünde öğrenim gören bir öğrenciyim. Web tasarım ve front-end geliştirme alanlarına ilgi duyuyorum. Bu proje Web Design dersi final projesi kapsamında hazırlanmıştır.",
+        "Yönetim Bilişim Sistemleri (İngilizce) bölümünde öğrenim gören bir öğrenciyim. Web tasarım ve front-end geliştirme alanlarına ilgi duyuyorum. HTML, CSS ve JavaScript kullanarak modern ve responsive web siteleri geliştirmekteyim. Bu proje Web Design dersi final projesi kapsamında hazırlanmıştır.",
+      info_title: "Bilgiler",
+      name: "Ad Soyad",
+      school: "Okul / Bölüm",
+      city: "Şehir",
+      email: "E-mail",
 
       skills_title: "Teknik Yetenekler",
+      lvl_mix: "Başlangıç - İyi",
+      s_html: "HTML",
+      s_css: "CSS",
+      s_js: "JavaScript",
 
-      timeline_title: "Proje Zaman Çizelgesi",
-      t1: "Hafta 1: Proje planlaması ve HTML iskeleti oluşturuldu",
-      t2: "Hafta 2: CSS tasarım ve responsive yapı geliştirildi",
-      t3: "Hafta 3: Ders programı tablosu ve timeline yapısı eklendi",
-      t4: "Hafta 4: JavaScript, çok dilli yapı ve yayınlama işlemleri yapıldı"
+      activities_title: "Faaliyetler",
+      art_title: "Sanatsal",
+      sport_title: "Sportif",
+      art1: "Dijital tasarıma ilgi",
+      art2: "Müzik dinleme",
+      sport1: "Yoga",
+      sport2: "Yürüyüş",
+
+      footer: "© 2026 Nehir Bektaş – Web Design Final Projesi"
     },
 
     en: {
       nav_home: "Home",
-      nav_schedule: "Schedule & Timeline",
-      title_activities: "Activities",
-      artistic: "Artistic",
-      sport: "Sportive",
+      nav_cv: "CV",
+      nav_page2: "Page 2",
 
-      artistic_1: "Interest in digital design",
-      artistic_2: "Listening to music",
+      hero_title: "Web Design Final Project",
+      hero_desc:
+        "This website was prepared for the Web Design course final project. Built with HTML, CSS and JavaScript.",
+      hero_quick: "Quick Links",
+      hero_quick_desc:
+        "Includes timeline, schedule table, form, news/publications and statistics.",
+      hero_btn: "Go to Page 2",
 
-      sport_1: "Yoga",
-      sport_2: "Walking",
-
+      cv_title: "CV",
       about_title: "About Me",
       about_text:
-        "I am a student in the Management Information Systems (English) department. I am interested in web design and front-end development. This project was prepared as part of the Web Design course final project.",
+        "I am a student in the Management Information Systems (English) program. I am interested in web design and front-end development. I build modern, responsive websites using HTML, CSS, and JavaScript. This project was created for the Web Design course final.",
+      info_title: "Info",
+      name: "Full Name",
+      school: "School / Program",
+      city: "City",
+      email: "E-mail",
 
       skills_title: "Technical Skills",
+      lvl_mix: "Beginner - Good",
+      s_html: "HTML",
+      s_css: "CSS",
+      s_js: "JavaScript",
 
-      timeline_title: "Project Timeline",
-      t1: "Week 1: Project planning and HTML structure",
-      t2: "Week 2: CSS design and responsive layout",
-      t3: "Week 3: Course schedule table and timeline added",
-      t4: "Week 4: JavaScript, multilingual structure and deployment"
+      activities_title: "Activities",
+      art_title: "Artistic",
+      sport_title: "Sports",
+      art1: "Interest in digital design",
+      art2: "Listening to music",
+      sport1: "Yoga",
+      sport2: "Walking",
+
+      footer: "© 2026 Nehir Bektaş – Web Design Final Project"
     }
   };
 
-  function setLanguage(lang) {
-    document.querySelectorAll("[data-i18n]").forEach(el => {
+  function setLang(lang) {
+    const dict = i18n[lang] || i18n.tr;
+
+    document.querySelectorAll("[data-i18n]").forEach((el) => {
       const key = el.getAttribute("data-i18n");
-      if (translations[lang][key]) {
-        el.textContent = translations[lang][key];
-      }
+      if (dict[key] !== undefined) el.textContent = dict[key];
     });
 
-    document.querySelectorAll("[data-lang]").forEach(btn =>
-      btn.classList.remove("active")
-    );
-    document
-      .querySelector(`[data-lang="${lang}"]`)
-      .classList.add("active");
+    document.querySelectorAll(".lang button").forEach((b) => {
+      b.classList.toggle("active", b.dataset.lang === lang);
+    });
+
+    localStorage.setItem("lang", lang);
   }
 
-  document.querySelectorAll("[data-lang]").forEach(button => {
-    button.addEventListener("click", () => {
-      setLanguage(button.getAttribute("data-lang"));
-    });
+  // Butonlara tıklama
+  document.querySelectorAll(".lang button").forEach((btn) => {
+    btn.addEventListener("click", () => setLang(btn.dataset.lang));
   });
 
-  // default language
-  setLanguage("tr");
+  // Sayfa açılınca seçili dil
+  const saved = localStorage.getItem("lang") || "tr";
+  setLang(saved);
 });
+
